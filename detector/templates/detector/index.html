@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Money Detector</title>
+  </head>
+  <body>
+    <main>
+      <h1>Money Detector</h1>
+      <p>Load your Teachable Machine model, then use a webcam or upload an image.</p>
+
+      <label for="model-url">Teachable Machine model folder URL</label>
+      <input id="model-url" type="url" placeholder="https://example.com/my-model/">
+      <button id="load-model" type="button">Load model</button>
+
+      <section aria-label="Camera controls">
+        <button id="start-camera" type="button">Start camera</button>
+        <button id="stop-camera" type="button" disabled>Stop camera</button>
+      </section>
+
+      <label for="image-upload">Upload an image of money</label>
+      <input id="image-upload" type="file" accept="image/*">
+
+      <section id="preview" aria-label="Camera or image preview"></section>
+      <p id="status" role="status">Load a model to begin.</p>
+      <section aria-live="polite">
+        <h2 id="prediction-label">No prediction yet</h2>
+        <p id="prediction-confidence"></p>
+      </section>
+    </main>
+  </body>
+</html>
