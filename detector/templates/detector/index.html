@@ -1,9 +1,11 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Money Detector</title>
+    <link rel="stylesheet" href="{% static 'detector/css/app.css' %}">
   </head>
   <body>
     <main>
@@ -11,23 +13,32 @@
       <p>Load your Teachable Machine model, then use a webcam or upload an image.</p>
 
       <label for="model-url">Teachable Machine model folder URL</label>
-      <input id="model-url" type="url" placeholder="https://example.com/my-model/">
-      <button id="load-model" type="button">Load model</button>
+      <div class="model-controls">
+        <input id="model-url" type="url" placeholder="https://example.com/my-model/" autocomplete="url">
+        <button id="load-model" type="button">Load model</button>
+      </div>
 
-      <section aria-label="Camera controls">
+      <section class="input-controls" aria-label="Camera controls">
         <button id="start-camera" type="button">Start camera</button>
         <button id="stop-camera" type="button" disabled>Stop camera</button>
       </section>
 
-      <label for="image-upload">Upload an image of money</label>
-      <input id="image-upload" type="file" accept="image/*">
+      <section class="upload-control">
+        <label for="image-upload">Upload an image of money</label>
+        <input id="image-upload" type="file" accept="image/*" disabled>
+      </section>
 
-      <section id="preview" aria-label="Camera or image preview"></section>
+      <section id="preview" class="preview" aria-label="Camera or image preview">
+        <p class="preview-placeholder">Your camera or selected image will appear here.</p>
+      </section>
       <p id="status" role="status">Load a model to begin.</p>
       <section aria-live="polite">
         <h2 id="prediction-label">No prediction yet</h2>
         <p id="prediction-confidence"></p>
       </section>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.5/dist/teachablemachine-image.min.js"></script>
+    <script src="{% static 'detector/js/detector.js' %}"></script>
   </body>
 </html>
