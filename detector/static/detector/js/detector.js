@@ -1,6 +1,5 @@
 (() => {
-  const modelUrlInput = document.querySelector("#model-url");
-  const loadModelButton = document.querySelector("#load-model");
+  const modelFolderInput = document.querySelector("#model-folder");
   const startCameraButton = document.querySelector("#start-camera");
   const stopCameraButton = document.querySelector("#stop-camera");
   const imageUploadInput = document.querySelector("#image-upload");
@@ -32,37 +31,31 @@
     imageUploadInput.disabled = !isReady;
   }
 
-  function normalizedModelFolderUrl(value) {
-    const parsed = new URL(value.trim());
-    if (!/^https?:$/.test(parsed.protocol)) {
-      throw new Error("Enter an http or https model folder URL.");
-    }
-    return parsed.href.endsWith("/") ? parsed.href : `${parsed.href}/`;
-  }
-
-  async function loadModel() {
+  async function loadModel(files) {
     stopCamera(false);
     const operation = operationGate.begin();
     setModelControls(false);
-    loadModelButton.disabled = true;
     setPrediction();
 
-    if (!modelUrlInput.value.trim()) {
-      setStatus("Enter the URL of your Teachable Machine model folder first.");
-      loadModelButton.disabled = false;
+    if (!files.length) {
+      setStatus("Choose your downloaded Teachable Machine model folder first.");
       return;
     }
 
     try {
-      const folderUrl = normalizedModelFolderUrl(modelUrlInput.value);
-      setStatus("Loading Teachable Machine model…");
-      const loadedModel = await tmImage.load(`${folderUrl}model.json`, `${folderUrl}metadata.json`);
+      const modelFiles = window.detectorModelFiles.findModelFiles(files);
+      setStatus("Loading downloaded Teachable Machine model…");
+      const loadedModel = await tmImage.loadFromFiles(
+        modelFiles.model,
+        modelFiles.weights,
+        modelFiles.metadata,
+      );
       if (!operationGate.isCurrent(operation)) {
         return;
       }
       model = loadedModel;
       setModelControls(true);
-      setStatus("Model loaded. Start the camera or upload an image.");
+      setStatus("Model loaded from your selected folder. Start the camera or upload an image.");
     } catch (error) {
       if (!operationGate.isCurrent(operation)) {
         return;
@@ -70,10 +63,6 @@
       model = null;
       setModelControls(false);
       setStatus(`Could not load the model: ${error.message}`);
-    } finally {
-      if (operationGate.isCurrent(operation)) {
-        loadModelButton.disabled = false;
-      }
     }
   }
 
@@ -203,7 +192,7 @@
     reader.readAsDataURL(file);
   }
 
-  loadModelButton.addEventListener("click", loadModel);
+  modelFolderInput.addEventListener("change", (event) => loadModel(event.target.files));
   startCameraButton.addEventListener("click", startCamera);
   stopCameraButton.addEventListener("click", () => {
     stopCamera();

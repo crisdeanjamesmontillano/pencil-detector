@@ -10,12 +10,11 @@
   <body>
     <main>
       <h1>Money Detector</h1>
-      <p>Load your Teachable Machine model, then use a webcam or upload an image.</p>
+      <p>Choose your downloaded Teachable Machine model folder, then use a webcam or upload an image.</p>
 
-      <label for="model-url">Teachable Machine model folder URL</label>
+      <label for="model-folder">Downloaded Teachable Machine model folder</label>
       <div class="model-controls">
-        <input id="model-url" type="url" placeholder="https://example.com/my-model/" autocomplete="url">
-        <button id="load-model" type="button">Load model</button>
+        <input id="model-folder" type="file" webkitdirectory directory multiple>
       </div>
 
       <section class="input-controls" aria-label="Camera controls">
@@ -40,6 +39,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.5/dist/teachablemachine-image.min.js"></script>
     <script src="{% static 'detector/js/lifecycle.js' %}"></script>
+    <script src="{% static 'detector/js/model-files.js' %}"></script>
     <script src="{% static 'detector/js/detector.js' %}"></script>
   </body>
 </html>
