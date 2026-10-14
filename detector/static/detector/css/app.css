@@ -13,6 +13,7 @@ body {
 }
 
 main {
+  box-sizing: border-box;
   width: min(680px, calc(100% - 2rem));
   margin: 2rem auto;
   padding: clamp(1.25rem, 4vw, 2.5rem);

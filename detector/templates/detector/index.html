@@ -19,7 +19,7 @@
       </div>
 
       <section class="input-controls" aria-label="Camera controls">
-        <button id="start-camera" type="button">Start camera</button>
+        <button id="start-camera" type="button" disabled>Start camera</button>
         <button id="stop-camera" type="button" disabled>Stop camera</button>
       </section>
 
@@ -39,6 +39,7 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.5/dist/teachablemachine-image.min.js"></script>
+    <script src="{% static 'detector/js/lifecycle.js' %}"></script>
     <script src="{% static 'detector/js/detector.js' %}"></script>
   </body>
 </html>
