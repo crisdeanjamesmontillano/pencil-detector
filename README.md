@@ -16,7 +16,7 @@ Open `http://127.0.0.1:8000/`, choose your downloaded Teachable Machine image-mo
 ## Prepare your Teachable Machine model
 
 1. In [Teachable Machine](https://teachablemachine.withgoogle.com/), create an **Image Project**.
-2. Add one class for each denomination you want to recognize. Use clear names such as `20 PHP`, `50 PHP`, and `100 PHP`—the app displays the class name returned by the model.
+2. Add one class for each denomination you want to recognize. Use clear names such as `pencil`, `poké ball`, `id`, `nothing` and `phone`—the app displays the class name returned by the model.
 3. Train the model, then choose **Export Model** and select **TensorFlow.js**.
 4. Download the exported model folder. It must contain `model.json`, `metadata.json`, and its `.bin` weight file.
 5. In Find the Pencil!, choose that downloaded folder. The browser loads the three model files locally; you do not need to upload them anywhere.
