@@ -4,13 +4,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Money Detector</title>
+    <title>Find the Pencil!</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✏️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'detector/css/app.css' %}">
   </head>
   <body>
     <main>
-      <h1>Money Detector</h1>
-      <p>Choose your downloaded Teachable Machine model folder, then use a webcam or upload an image.</p>
+      <h1>Find the Pencil!</h1>
+      <p>Load the model, start the camera, and show me a pencil!.</p>
 
       <label for="model-folder">Downloaded Teachable Machine model folder</label>
       <div class="model-controls">
@@ -18,23 +22,24 @@
       </div>
 
       <section class="input-controls" aria-label="Camera controls">
-        <button id="start-camera" type="button" disabled>Start camera</button>
-        <button id="stop-camera" type="button" disabled>Stop camera</button>
+        <button id="start-camera" type="button" disabled>📷 Start camera</button>
+        <button id="stop-camera" type="button" disabled>⏹️ Stop camera</button>
       </section>
 
       <section class="upload-control">
-        <label for="image-upload">Upload an image of money</label>
+        <label for="image-upload">Upload an image of Pencil</label>
         <input id="image-upload" type="file" accept="image/*" disabled>
       </section>
 
       <section id="preview" class="preview" aria-label="Camera or image preview">
         <p class="preview-placeholder">Your camera or selected image will appear here.</p>
       </section>
-      <p id="status" role="status">Load a model to begin.</p>
+      <p id="status" role="status">Pick your pencil model to start! ✏️</p>
       <section aria-live="polite">
-        <h2 id="prediction-label">No prediction yet</h2>
+        <h2 id="prediction-label">Can you find the pencil? 👀</h2>
         <p id="prediction-confidence"></p>
       </section>
+      <p class="footer">Made with <span>🧡</span> by Gari, Paje, and Montillano</p>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.5/dist/teachablemachine-image.min.js"></script>

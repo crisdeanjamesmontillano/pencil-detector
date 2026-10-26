@@ -26,7 +26,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "money_detector.urls"
+ROOT_URLCONF = "app_config.urls"
 
 TEMPLATES = [
     {
@@ -43,7 +43,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "money_detector.wsgi.application"
+WSGI_APPLICATION = "app_config.wsgi.application"
 
 DATABASES = {
     "default": {

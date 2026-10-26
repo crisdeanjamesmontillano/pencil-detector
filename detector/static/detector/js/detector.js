@@ -17,7 +17,7 @@
     status.textContent = message;
   }
 
-  function setPrediction(label = "No prediction yet", confidence = "") {
+  function setPrediction(label = "Can you find the pencil? 👀", confidence = "") {
     predictionLabel.textContent = label;
     predictionConfidence.textContent = confidence;
   }
@@ -68,7 +68,7 @@
 
   async function predictSource(source, operation) {
     if (!model) {
-      setStatus("Load a Teachable Machine model before identifying money.");
+      setStatus("Load a Teachable Machine model before identifying Pencil.");
       return;
     }
 
@@ -124,7 +124,7 @@
       await video.play();
       startCameraButton.disabled = true;
       stopCameraButton.disabled = false;
-      setStatus("Camera is active. Identifying money…");
+      setStatus("Camera is active. Identifying Pencil…");
       animationFrame = window.requestAnimationFrame(() => cameraLoop(operation));
     } catch (error) {
       if (operationGate.isCurrent(operation)) {
@@ -169,7 +169,7 @@
         return;
       }
       const image = new Image();
-      image.alt = "Selected money image";
+      image.alt = "Selected Pencil image";
       image.onload = async () => {
         if (!operationGate.isCurrent(operation)) {
           return;
